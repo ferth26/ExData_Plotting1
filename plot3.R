@@ -40,6 +40,9 @@ data.fil <- filter(data, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-0
 # Making plots
 data.fil <- mutate(data.fil, DateTime = ymd_hms(paste(Date, Time, sep = " ")))
 
+# png
+png("plot3.png", width = 480, height = 480)
+
 with(data.fil, {
   plot(
     Sub_metering_1 ~ DateTime,
@@ -51,17 +54,15 @@ with(data.fil, {
   lines(Sub_metering_3 ~ DateTime, type = "l", col = "blue")
 })
 
-
 legend(
   x = "topright",
   col = c("black", "red", "blue"),
+  lty = 1,
   legend = c("Sub_metering_1",
              "Sub_metering_2",
              "Sub_metering_3"),
-  lty = 1
 )
 
 
 # Saving plot
-dev.copy(png, "plot3.png", width  = 480, height = 480)
 dev.off()

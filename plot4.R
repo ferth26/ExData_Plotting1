@@ -40,6 +40,8 @@ data.fil <- filter(data, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-0
 # Making plots
 data.fil <- mutate(data.fil, DateTime = ymd_hms(paste(Date, Time, sep = " ")))
 
+png("plot4.png", width  = 480, height = 480)
+
 # Multiple graphs in a single plot
 par(
   mfrow = c(2, 2),
@@ -85,5 +87,4 @@ with(data = data.fil, expr = {
 
 
 # Saving plot
-dev.copy(png, "plot4.png", width  = 480, height = 480)
 dev.off()
